@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Code2, Mail, ExternalLink, Layout, Server, BrainCircuit, Briefcase, GraduationCap, Award, ChevronRight, X, Wrench } from 'lucide-react'
+import { Code2, Mail, ExternalLink, Layout, Server, BrainCircuit, Briefcase, GraduationCap, Award, X, Wrench } from 'lucide-react'
 
 export default function App() {
   const [modalImage, setModalImage] = useState(null)
@@ -9,7 +9,7 @@ export default function App() {
       title: "Fullstack POS & Financial Analytics",
       description: "Sistem kasir berbasis web dengan dasbor analitik keuangan real-time untuk usaha kuliner. Dibangun dengan autentikasi JWT, integrasi pembayaran QRIS melalui Midtrans, dan reverse proxy Nginx pada VPS mandiri.",
       tech: ["React", "FastAPI", "SQLite", "Tailwind", "Midtrans", "VPS"],
-      link: "https://dimsumgembul.my.id",
+      link: "#",
       github: "https://github.com/dewanugroho/dimsum-pos",
       type: "Fullstack",
       status: null
@@ -31,24 +31,6 @@ export default function App() {
       github: "https://github.com/dewanugroho/Chatbot-Dialogflow",
       type: "AI / Cloud",
       status: null
-    },
-    {
-      title: "Automated Video Content Clipper",
-      description: "Automation berbasis Python untuk memotong video panjang menjadi cuplikan pendek yang siap diunggah ke media sosial.",
-      tech: ["Python", "OpenCV", "Automation"],
-      link: "#",
-      github: "https://github.com/dewanugroho/auto-clip-video",
-      type: "Scripting / Tools",
-      status: "Work in Progress"
-    },
-    {
-      title: "Kedai Kopi Nuansa",
-      description: "Sistem manajemen dan pemesanan digital untuk kedai kopi lokal dengan antarmuka yang responsif.",
-      tech: ["Web Development", "Frontend", "UI/UX"],
-      link: "#",
-      github: "https://github.com/dewanugroho/kedai_kopi_nuansa",
-      type: "Web App",
-      status: "Work in Progress"
     }
   ]
 
@@ -98,7 +80,7 @@ export default function App() {
         <div className="relative max-w-5xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
           <div className="flex-1 text-center md:text-left">
             <p className="text-blue-400 font-semibold text-sm mb-4 tracking-wide">
-              Terbuka untuk kesempatan magang
+              Terbuka untuk magang & peluang kerja
             </p>
             <h1 className="text-4xl md:text-6xl font-black mb-4 tracking-tight">Dewa Bintang Nugroho</h1>
             <h2 className="text-xl md:text-2xl text-slate-300 font-light mb-6">Mahasiswa Informatika & Fullstack Developer</h2>
@@ -141,15 +123,15 @@ export default function App() {
             </div>
             <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col items-center gap-4 text-center">
               <div className="p-4 bg-green-100 rounded-full"><Server className="text-green-600" size={32}/></div>
-              <div><h4 className="font-bold text-lg text-slate-700">Backend & DB</h4><p className="text-sm text-slate-500 mt-1">Python, FastAPI, MySQL, SQLite</p></div>
+              <div><h4 className="font-bold text-lg text-slate-700">Backend & DB</h4><p className="text-sm text-slate-500 mt-1">Python, FastAPI, SQLite</p></div>
             </div>
             <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col items-center gap-4 text-center">
               <div className="p-4 bg-purple-100 rounded-full"><BrainCircuit className="text-purple-600" size={32}/></div>
-              <div><h4 className="font-bold text-lg text-slate-700">AI & NLP</h4><p className="text-sm text-slate-500 mt-1">Rasa, Dialogflow, Langflow</p></div>
+              <div><h4 className="font-bold text-lg text-slate-700">AI & NLP</h4><p className="text-sm text-slate-500 mt-1">Rasa, Dialogflow</p></div>
             </div>
             <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col items-center gap-4 text-center">
               <div className="p-4 bg-orange-100 rounded-full"><Wrench className="text-orange-600" size={32}/></div>
-              <div><h4 className="font-bold text-lg text-slate-700">DevOps & Tools</h4><p className="text-sm text-slate-500 mt-1">Git, Docker, Nginx, Linux VPS</p></div>
+              <div><h4 className="font-bold text-lg text-slate-700">DevOps & Tools</h4><p className="text-sm text-slate-500 mt-1">Git, Nginx, Linux VPS</p></div>
             </div>
           </div>
         </div>
@@ -261,11 +243,7 @@ export default function App() {
       <footer className="bg-slate-900 text-slate-400 py-12 text-center border-t border-slate-800">
         <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-medium text-sm">&copy; 2026 Dewa Bintang Nugroho.</p>
-          <div className="flex gap-4">
-            <span className="text-sm flex items-center gap-1 hover:text-white transition-colors cursor-pointer">React <ChevronRight size={14}/></span>
-            <span className="text-sm flex items-center gap-1 hover:text-white transition-colors cursor-pointer">Tailwind CSS <ChevronRight size={14}/></span>
-            <span className="text-sm flex items-center gap-1 hover:text-white transition-colors cursor-pointer">Vite <ChevronRight size={14}/></span>
-          </div>
+          <p className="text-sm">Dibuat dengan React, Tailwind CSS, dan Vite</p>
         </div>
       </footer>
     </div>
