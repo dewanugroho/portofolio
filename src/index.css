@@ -40,4 +40,12 @@
     overflow: visible;
     z-index: 1000;
   }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }

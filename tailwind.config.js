@@ -19,6 +19,12 @@ export default {
         sans: ['ui-sans-serif', 'system-ui', '-apple-system', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
       },
+      maxWidth: {
+        content: '48rem',
+      },
+      borderRadius: {
+        token: '6px',
+      },
     },
   },
   plugins: [],
