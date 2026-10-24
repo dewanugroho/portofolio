@@ -32,7 +32,11 @@ export default function Projects() {
   const { projects, ui } = data
 
   return (
-    <section id="projects" className="py-16 px-6 border-b border-rule" aria-labelledby="projects-heading">
+    <section
+      id="projects"
+      className="py-16 px-6 border-b border-rule"
+      aria-labelledby="projects-heading"
+    >
       <div className="max-w-content mx-auto space-y-12">
         <h2 id="projects-heading" className="font-mono text-xs uppercase tracking-wider text-muted">
           {ui.sections.projects}
@@ -79,7 +83,9 @@ export default function Projects() {
                     <ul className="space-y-1">
                       {project.results.map((result, i) => (
                         <li key={i} className="text-sm text-muted flex gap-2">
-                          <span aria-hidden="true" className="text-accent">→</span>
+                          <span aria-hidden="true" className="text-accent">
+                            →
+                          </span>
                           <span>{result}</span>
                         </li>
                       ))}

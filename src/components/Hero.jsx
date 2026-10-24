@@ -11,7 +11,11 @@ export default function Hero() {
 
   const primaryAction = hasCv
     ? { label: ui.hero.cvCta, href: site.cv, icon: null }
-    : { label: ui.hero.primaryCta, href: `mailto:${site.email}`, icon: hasEmail ? <Mail size={16} /> : null }
+    : {
+        label: ui.hero.primaryCta,
+        href: `mailto:${site.email}`,
+        icon: hasEmail ? <Mail size={16} /> : null,
+      }
 
   return (
     <section className="py-16 px-6 border-b border-rule">

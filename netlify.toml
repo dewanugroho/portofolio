@@ -1,0 +1,13 @@
+# Konfigurasi deploy Netlify.
+# Domain: set VITE_SITE_URL di Site configuration → Environment variables
+# (nilai env CI menimpa file .env).
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA fallback: semua path jatuh ke index.html.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

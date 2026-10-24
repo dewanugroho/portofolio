@@ -60,9 +60,16 @@ export default function Certifications() {
   }, [openImage, closeModal])
 
   return (
-    <section id="certifications" className="py-16 px-6 border-b border-rule" aria-labelledby="certifications-heading">
+    <section
+      id="certifications"
+      className="py-16 px-6 border-b border-rule"
+      aria-labelledby="certifications-heading"
+    >
       <div className="max-w-content mx-auto space-y-4">
-        <h2 id="certifications-heading" className="font-mono text-xs uppercase tracking-wider text-muted">
+        <h2
+          id="certifications-heading"
+          className="font-mono text-xs uppercase tracking-wider text-muted"
+        >
           {ui.sections.certifications}
         </h2>
         {hasCerts &&

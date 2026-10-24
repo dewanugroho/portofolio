@@ -76,7 +76,19 @@
       "title": "Fullstack POS & Financial Analytics",
       "context": "Sistem kasir web dengan dasbor analitik keuangan real-time untuk usaha kuliner, dibangun dari skema basis data sampai integrasi pembayaran dan deployment di server sendiri.",
       "role": "Full-stack developer sekaligus pemilik usaha",
-      "tech": ["React", "Vite", "Tailwind CSS", "FastAPI", "SQLAlchemy", "SQLite", "PyJWT", "Midtrans Snap (QRIS)", "Recharts", "Nginx", "Linux VPS"],
+      "tech": [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "FastAPI",
+        "SQLAlchemy",
+        "SQLite",
+        "PyJWT",
+        "Midtrans Snap (QRIS)",
+        "Recharts",
+        "Nginx",
+        "Linux VPS"
+      ],
       "results": [
         "Autentikasi JWT, pembayaran QRIS via Midtrans Snap, dan dasbor tren 30 hari",
         "Dipakai untuk operasional usaha kuliner Dimsum Gembul",
