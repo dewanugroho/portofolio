@@ -1,0 +1,92 @@
+{
+  "site": {
+    "name": "Dewa Bintang Nugroho",
+    "role": "Mahasiswa Informatika & Fullstack Developer",
+    "summary": "Mahasiswa Informatika di Universitas Sahid Surakarta. Membangun sistem fullstack dari backend dan integrasi pembayaran sampai deployment mandiri di VPS. Menjalankan usaha kuliner Dimsum Gembul sambil menyelesaikan riset skripsi tentang chatbot berbasis NLP.",
+    "status": "Terbuka untuk magang & peluang kerja",
+    "email": "dewanugroho004@gmail.com",
+    "github": "https://github.com/dewanugroho",
+    "linkedin": "",
+    "cv": ""
+  },
+  "skills": [
+    {
+      "group": "Frontend",
+      "items": ["React", "Tailwind CSS", "Vite"]
+    },
+    {
+      "group": "Backend & Basis Data",
+      "items": ["Python", "FastAPI", "SQLite"]
+    },
+    {
+      "group": "Integrasi",
+      "items": ["Midtrans (QRIS)"]
+    },
+    {
+      "group": "AI & NLP",
+      "items": ["Rasa", "Dialogflow"]
+    },
+    {
+      "group": "Infrastruktur & Tools",
+      "items": ["Git", "Nginx", "Linux VPS"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "pos",
+      "title": "Fullstack POS & Financial Analytics",
+      "summary": "Sistem kasir web dengan dasbor analitik keuangan untuk usaha kuliner. Autentikasi JWT, pembayaran QRIS lewat Midtrans, dan reverse proxy Nginx di VPS mandiri.",
+      "tech": ["React", "FastAPI", "SQLite", "Tailwind CSS", "Midtrans", "Nginx"],
+      "repo": "https://github.com/dewanugroho/dimsum-pos",
+      "demo": "",
+      "screenshot": "",
+      "highlights": []
+    },
+    {
+      "id": "rasa",
+      "title": "NLP Chatbot dengan Rasa Framework",
+      "summary": "Chatbot untuk deteksi intent dan entity pada skenario respons otomatis, bagian dari riset skripsi tentang otomatisasi layanan pelanggan UMKM.",
+      "tech": ["Python", "Rasa", "NLP"],
+      "repo": "https://github.com/dewanugroho/Chatbot-Rasa",
+      "demo": "",
+      "screenshot": "",
+      "highlights": []
+    },
+    {
+      "id": "dialogflow",
+      "title": "Virtual Agent dengan Google Dialogflow",
+      "summary": "Agen virtual layanan pelanggan sebagai pembanding performa terhadap Rasa dalam riset skripsi.",
+      "tech": ["Python", "Dialogflow", "Google Cloud", "NLP"],
+      "repo": "https://github.com/dewanugroho/Chatbot-Dialogflow",
+      "demo": "",
+      "screenshot": "",
+      "highlights": []
+    }
+  ],
+  "experience": [
+    {
+      "period": "2025 - Sekarang",
+      "role": "Pemilik & Pengembang Sistem",
+      "organization": "Dimsum Gembul",
+      "description": "Merancang POS web untuk operasional usaha kuliner: pencatatan transaksi, dasbor analitik keuangan, dan pembayaran QRIS. Turut mengelola produksi dan perencanaan kebutuhan alat."
+    },
+    {
+      "period": "2022 - Sekarang",
+      "role": "Mahasiswa Informatika",
+      "organization": "Universitas Sahid Surakarta",
+      "description": "Skripsi membandingkan Google Dialogflow dan Rasa untuk chatbot layanan pelanggan UMKM: perancangan alur percakapan, pelatihan model, dan evaluasi performa."
+    }
+  ],
+  "certifications": [
+    {
+      "title": "USAHID Elite (English Language Integrated-Test)",
+      "issuer": "Universitas Sahid Surakarta",
+      "image": "/sertifikat-usahid.jpg"
+    },
+    {
+      "title": "IBM SkillsBuild University Education: AI Agent for Programming",
+      "issuer": "Hacktiv8 Indonesia",
+      "image": "/sertifikat-hacktiv8.jpg"
+    }
+  ]
+}
