@@ -7,13 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: '#fafaf9',
-        surface: '#ffffff',
-        ink: '#1c1917',
-        muted: '#57534e',
-        rule: '#e7e5e4',
-        accent: '#0f766e',
-        'accent-strong': '#115e59',
+        paper: 'var(--color-paper)',
+        surface: 'var(--color-surface)',
+        ink: 'var(--color-ink)',
+        muted: 'var(--color-muted)',
+        rule: 'var(--color-rule)',
+        accent: 'var(--color-accent)',
+        'accent-strong': 'var(--color-accent-strong)',
       },
       fontFamily: {
         sans: ['ui-sans-serif', 'system-ui', '-apple-system', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
