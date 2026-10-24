@@ -1,17 +1,17 @@
 import { Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons.jsx'
-import data from '../data/portfolio.json'
+import data from '../data/content.js'
 
 export default function Hero() {
-  const { site } = data
+  const { site, ui } = data
   const hasCv = Boolean(site.cv)
   const hasGithub = Boolean(site.github)
   const hasLinkedin = Boolean(site.linkedin)
   const hasEmail = Boolean(site.email)
 
   const primaryAction = hasCv
-    ? { label: 'Unduh CV', href: site.cv, icon: null }
-    : { label: 'Email saya', href: `mailto:${site.email}`, icon: hasEmail ? <Mail size={16} /> : null }
+    ? { label: ui.hero.cvCta, href: site.cv, icon: null }
+    : { label: ui.hero.primaryCta, href: `mailto:${site.email}`, icon: hasEmail ? <Mail size={16} /> : null }
 
   return (
     <section className="py-16 px-6 border-b border-rule">
@@ -48,7 +48,7 @@ export default function Hero() {
                   href={`mailto:${site.email}`}
                   className="text-sm text-muted hover:text-ink transition-colors"
                 >
-                  Email
+                  {ui.hero.emailLink}
                 </a>
               )}
               {hasGithub && (

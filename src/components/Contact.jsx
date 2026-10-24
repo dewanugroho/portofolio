@@ -1,8 +1,8 @@
 import { GithubIcon, LinkedinIcon } from './icons.jsx'
-import data from '../data/portfolio.json'
+import data from '../data/content.js'
 
 export default function Contact() {
-  const { site } = data
+  const { site, ui } = data
   const hasGithub = Boolean(site.github)
   const hasLinkedin = Boolean(site.linkedin)
   const hasEmail = Boolean(site.email)
@@ -11,10 +11,10 @@ export default function Contact() {
     <section id="contact" className="py-16 px-6 border-b border-rule" aria-labelledby="contact-heading">
       <div className="max-w-content mx-auto space-y-6">
         <h2 id="contact-heading" className="font-mono text-xs uppercase tracking-wider text-muted">
-          Kontak
+          {ui.sections.contact}
         </h2>
         <p className="text-sm text-muted">
-          Tersedia untuk diskusi singkat.
+          {ui.contact.lead}
         </p>
         <div className="flex items-center gap-4">
           {hasEmail && (

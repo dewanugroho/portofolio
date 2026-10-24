@@ -1,4 +1,4 @@
-import data from '../data/portfolio.json'
+import data from '../data/content.js'
 
 export default function Experience() {
   const { experience } = data
@@ -7,7 +7,7 @@ export default function Experience() {
     <section id="experience" className="py-16 px-6 border-b border-rule" aria-labelledby="experience-heading">
       <div className="max-w-content mx-auto space-y-6">
         <h2 id="experience-heading" className="font-mono text-xs uppercase tracking-wider text-muted">
-          Pengalaman
+          {data.ui.sections.experience}
         </h2>
         <dl className="space-y-8">
           {experience.map((exp) => (

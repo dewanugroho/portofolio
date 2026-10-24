@@ -1,14 +1,8 @@
-import data from '../data/portfolio.json'
-
-const navItems = [
-  { label: 'Proyek', href: '#projects' },
-  { label: 'Keahlian', href: '#skills' },
-  { label: 'Pengalaman', href: '#experience' },
-  { label: 'Sertifikasi', href: '#certifications' },
-  { label: 'Kontak', href: '#contact' },
-]
+import data from '../data/content.js'
 
 export default function Header() {
+  const navItems = data.ui.nav
+
   return (
     <header className="sticky top-0 z-40 bg-paper border-b border-rule">
       <div className="max-w-content mx-auto flex items-center justify-between gap-4 px-6 h-14">

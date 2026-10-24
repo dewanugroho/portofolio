@@ -2,12 +2,51 @@
   "site": {
     "name": "Dewa Bintang Nugroho",
     "role": "Mahasiswa Informatika & Fullstack Developer",
-    "summary": "Mahasiswa Informatika di Universitas Sahid Surakarta. Membangun sistem fullstack dari backend dan integrasi pembayaran sampai deployment mandiri di VPS. Menjalankan usaha kuliner Dimsum Gembul sambil menyelesaikan riset skripsi tentang chatbot berbasis NLP.",
+    "summary": "Membangun sistem fullstack dengan React dan FastAPI — dari autentikasi dan integrasi pembayaran QRIS Midtrans sampai deployment di VPS mandiri. POS yang saya kembangkan dipakai di usaha kuliner saya sendiri, dan saya sedang menyelesaikan skripsi tentang perbandingan chatbot NLP Rasa dan Dialogflow.",
     "status": "Terbuka untuk magang & peluang kerja",
     "email": "dewanugroho004@gmail.com",
     "github": "https://github.com/dewanugroho",
     "linkedin": "",
     "cv": ""
+  },
+  "ui": {
+    "skipLink": "Lewati ke konten",
+    "nav": [
+      { "label": "Proyek", "href": "#projects" },
+      { "label": "Keahlian", "href": "#skills" },
+      { "label": "Pengalaman", "href": "#experience" },
+      { "label": "Sertifikasi", "href": "#certifications" },
+      { "label": "Kontak", "href": "#contact" }
+    ],
+    "hero": {
+      "primaryCta": "Email saya",
+      "cvCta": "Unduh CV",
+      "emailLink": "Email"
+    },
+    "sections": {
+      "projects": "Proyek",
+      "skills": "Keahlian",
+      "experience": "Pengalaman",
+      "certifications": "Sertifikasi",
+      "contact": "Kontak"
+    },
+    "projects": {
+      "code": "Kode",
+      "demo": "Demo",
+      "roleLabel": "Peran",
+      "resultsLabel": "Hasil"
+    },
+    "certifications": {
+      "view": "Lihat",
+      "modalLabel": "Pratinjau sertifikat",
+      "close": "Tutup pratinjau"
+    },
+    "contact": {
+      "lead": "Tersedia untuk diskusi singkat."
+    },
+    "footer": {
+      "note": "Dibuat dengan React dan Tailwind CSS"
+    }
   },
   "skills": [
     {
@@ -35,32 +74,52 @@
     {
       "id": "pos",
       "title": "Fullstack POS & Financial Analytics",
-      "summary": "Sistem kasir web dengan dasbor analitik keuangan untuk usaha kuliner. Autentikasi JWT, pembayaran QRIS lewat Midtrans, dan reverse proxy Nginx di VPS mandiri.",
-      "tech": ["React", "FastAPI", "SQLite", "Tailwind CSS", "Midtrans", "Nginx"],
+      "context": "Sistem kasir web dengan dasbor analitik keuangan real-time untuk usaha kuliner, dibangun dari skema basis data sampai integrasi pembayaran dan deployment di server sendiri.",
+      "role": "Full-stack developer sekaligus pemilik usaha",
+      "tech": ["React", "Vite", "Tailwind CSS", "FastAPI", "SQLAlchemy", "SQLite", "PyJWT", "Midtrans Snap (QRIS)", "Recharts", "Nginx", "Linux VPS"],
+      "results": [
+        "Autentikasi JWT, pembayaran QRIS via Midtrans Snap, dan dasbor tren 30 hari",
+        "Dipakai untuk operasional usaha kuliner Dimsum Gembul",
+        "[ISI: dampak nyata bila ada angka — mis. jumlah transaksi per hari atau pengguna]"
+      ],
       "repo": "https://github.com/dewanugroho/dimsum-pos",
       "demo": "",
-      "screenshot": "",
-      "highlights": []
+      "screenshot": "[ISI: screenshot antarmuka POS — tidak ada di repo]",
+      "screenshotAlt": "Screenshot aplikasi POS dan dasbor analitik keuangannya"
     },
     {
       "id": "rasa",
       "title": "NLP Chatbot dengan Rasa Framework",
-      "summary": "Chatbot untuk deteksi intent dan entity pada skenario respons otomatis, bagian dari riset skripsi tentang otomatisasi layanan pelanggan UMKM.",
-      "tech": ["Python", "Rasa", "NLP"],
+      "context": "Chatbot NLP untuk deteksi intent dan entity pada skenario respons otomatis, dikembangkan sebagai bagian riset skripsi tentang otomatisasi layanan pelanggan UMKM.",
+      "role": "Perancang alur percakapan, pelatihan model, dan evaluasi",
+      "tech": ["Python", "Rasa", "DIETClassifier", "SQLite", "NLP"],
+      "results": [
+        "Akurasi klasifikasi intent 1.00 pada 308 sampel uji (laporan evaluasi di repo)",
+        "21 intent berbahasa Indonesia, channel REST dan Socket.IO"
+      ],
       "repo": "https://github.com/dewanugroho/Chatbot-Rasa",
       "demo": "",
-      "screenshot": "",
-      "highlights": []
+      "screenshot": "/projects/rasa-confusion-matrix.webp",
+      "screenshotWidth": 1110,
+      "screenshotHeight": 1200,
+      "screenshotAlt": "Confusion matrix evaluasi intent Rasa: seluruh prediksi berada diagonal sesuai label benar"
     },
     {
       "id": "dialogflow",
       "title": "Virtual Agent dengan Google Dialogflow",
-      "summary": "Agen virtual layanan pelanggan sebagai pembanding performa terhadap Rasa dalam riset skripsi.",
-      "tech": ["Python", "Dialogflow", "Google Cloud", "NLP"],
+      "context": "Agen virtual layanan pelanggan berbasis Dialogflow ES dengan webhook Flask, dibangun sebagai pembanding performa terhadap Rasa dalam riset skripsi yang sama.",
+      "role": "Integrasi Dialogflow ES, webhook, dan evaluasi performa",
+      "tech": ["Python", "Dialogflow ES", "Google Cloud", "Flask", "NLP"],
+      "results": [
+        "Akurasi klasifikasi intent 0.97 pada 308 sampel uji (laporan evaluasi di repo)",
+        "Webhook Flask untuk aksi kustom termasuk pencatatan data penjualan"
+      ],
       "repo": "https://github.com/dewanugroho/Chatbot-Dialogflow",
       "demo": "",
-      "screenshot": "",
-      "highlights": []
+      "screenshot": "/projects/dialogflow-confusion-matrix.webp",
+      "screenshotWidth": 1200,
+      "screenshotHeight": 1000,
+      "screenshotAlt": "Confusion matrix evaluasi intent Dialogflow ES dengan akurasi 0.97 dari 308 sampel"
     }
   ],
   "experience": [
@@ -68,25 +127,25 @@
       "period": "2025 - Sekarang",
       "role": "Pemilik & Pengembang Sistem",
       "organization": "Dimsum Gembul",
-      "description": "Merancang POS web untuk operasional usaha kuliner: pencatatan transaksi, dasbor analitik keuangan, dan pembayaran QRIS. Turut mengelola produksi dan perencanaan kebutuhan alat."
+      "description": "Merancang dan mengembangkan POS web untuk operasional usaha kuliner: pencatatan transaksi, dasbor analitik keuangan, dan pembayaran QRIS. Turut mengelola produksi dan perencanaan kebutuhan alat."
     },
     {
       "period": "2022 - Sekarang",
       "role": "Mahasiswa Informatika",
       "organization": "Universitas Sahid Surakarta",
-      "description": "Skripsi membandingkan Google Dialogflow dan Rasa untuk chatbot layanan pelanggan UMKM: perancangan alur percakapan, pelatihan model, dan evaluasi performa."
+      "description": "Menjalankan tugas akhir yang membandingkan Google Dialogflow dan Rasa Framework untuk chatbot layanan pelanggan UMKM: perancangan alur percakapan, pelatihan model, dan evaluasi performa."
     }
   ],
   "certifications": [
     {
       "title": "USAHID Elite (English Language Integrated-Test)",
       "issuer": "Universitas Sahid Surakarta",
-      "image": "/sertifikat-usahid.jpg"
+      "image": "/sertifikat-usahid.webp"
     },
     {
       "title": "IBM SkillsBuild University Education: AI Agent for Programming",
       "issuer": "Hacktiv8 Indonesia",
-      "image": "/sertifikat-hacktiv8.jpg"
+      "image": "/sertifikat-hacktiv8.webp"
     }
   ]
 }

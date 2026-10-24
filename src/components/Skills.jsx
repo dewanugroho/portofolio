@@ -1,4 +1,4 @@
-import data from '../data/portfolio.json'
+import data from '../data/content.js'
 
 export default function Skills() {
   const { skills } = data
@@ -7,7 +7,7 @@ export default function Skills() {
     <section id="skills" className="py-16 px-6 border-b border-rule" aria-labelledby="skills-heading">
       <div className="max-w-content mx-auto space-y-6">
         <h2 id="skills-heading" className="font-mono text-xs uppercase tracking-wider text-muted">
-          Keahlian
+          {data.ui.sections.skills}
         </h2>
         <dl className="space-y-4">
           {skills.map((group) => (

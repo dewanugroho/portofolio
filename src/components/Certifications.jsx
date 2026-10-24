@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
-import data from '../data/portfolio.json'
+import data from '../data/content.js'
 
 export default function Certifications() {
-  const { certifications } = data
+  const { certifications, ui } = data
   const [openImage, setOpenImage] = useState(null)
   const triggerRef = useRef(null)
 
@@ -30,7 +30,7 @@ export default function Certifications() {
     <section id="certifications" className="py-16 px-6 border-b border-rule" aria-labelledby="certifications-heading">
       <div className="max-w-content mx-auto space-y-4">
         <h2 id="certifications-heading" className="font-mono text-xs uppercase tracking-wider text-muted">
-          Sertifikasi
+          {ui.sections.certifications}
         </h2>
         {hasCerts &&
           certifications.map((cert, index) => (
@@ -43,7 +43,7 @@ export default function Certifications() {
               >
                 <span className="text-muted">{cert.title}</span>
                 <span className="font-mono text-xs text-muted">/ {cert.issuer}</span>
-                <span className="font-mono text-xs text-muted">Lihat ↗</span>
+                <span className="font-mono text-xs text-muted">{ui.certifications.view} ↗</span>
               </button>
             </div>
           ))}
@@ -54,13 +54,12 @@ export default function Certifications() {
             onClick={closeModal}
             role="dialog"
             aria-modal="true"
-            aria-label="Pratinjau sertifikat"
+            aria-label={ui.certifications.modalLabel}
           >
             <button
               type="button"
-              onClick={closeModal}
-              aria-label="Tutup pratinjau"
-              className="absolute top-4 right-4 text-muted hover:text-ink transition-colors"
+              onClick={closeModal}                aria-label={ui.certifications.close}
+                className="absolute top-4 right-4 text-muted hover:text-ink transition-colors"
             >
               ✕
             </button>

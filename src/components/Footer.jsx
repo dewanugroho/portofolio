@@ -1,4 +1,4 @@
-import data from '../data/portfolio.json'
+import data from '../data/content.js'
 
 export default function Footer() {
   const { site } = data
@@ -10,7 +10,7 @@ export default function Footer() {
           &copy; 2026 {site.name}
         </p>
         <p className="font-mono text-xs text-muted">
-          Dibuat dengan React dan Tailwind CSS
+          {data.ui.footer.note}
         </p>
       </div>
     </footer>
