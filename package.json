@@ -8,6 +8,7 @@
     "build": "vite build",
     "postbuild": "node scripts/generate-seo.mjs",
     "lint": "eslint .",
+    "test": "node scripts/smoke-test.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "preview": "vite preview"
