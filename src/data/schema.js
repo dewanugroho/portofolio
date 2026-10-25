@@ -27,7 +27,44 @@ const siteSchema = z.strictObject({
 const uiSchema = z.strictObject({
   skipLink: nonEmpty,
   nav: z.array(z.object({ label: nonEmpty, href: nonEmpty })).min(1),
-  hero: z.object({ primaryCta: nonEmpty, cvCta: nonEmpty, emailLink: nonEmpty }),
+  hero: z.object({
+    primaryCta: nonEmpty,
+    secondaryCta: nonEmpty,
+    cvCta: nonEmpty,
+    emailLink: nonEmpty,
+  }),
+  palette: z.object({
+    label: nonEmpty,
+    hint: nonEmpty,
+    placeholder: nonEmpty,
+    empty: nonEmpty,
+    copyEmail: nonEmpty,
+    copied: nonEmpty,
+    copyFailed: nonEmpty,
+    toggleTheme: nonEmpty,
+    openGithub: nonEmpty,
+  }),
+  posDemo: z.object({
+    title: nonEmpty,
+    badge: nonEmpty,
+    note: nonEmpty,
+    menuLabel: nonEmpty,
+    cartLabel: nonEmpty,
+    empty: nonEmpty,
+    total: nonEmpty,
+    addItem: nonEmpty,
+    removeItem: nonEmpty,
+    pay: nonEmpty,
+    payTitle: nonEmpty,
+    payNote: nonEmpty,
+    confirmPay: nonEmpty,
+    cancel: nonEmpty,
+    success: nonEmpty,
+    done: nonEmpty,
+    close: nonEmpty,
+    trendLabel: nonEmpty,
+    trendNote: nonEmpty,
+  }),
   sections: z.object({
     projects: nonEmpty,
     skills: nonEmpty,
@@ -49,6 +86,8 @@ const uiSchema = z.strictObject({
 
 const projectSchema = z.strictObject({
   id: z.string().regex(/^[a-z0-9-]+$/, 'id hanya boleh huruf kecil, angka, dan tanda hubung'),
+  // Menandai proyek yang punya demo interaktif tertanam di halaman.
+  interactiveDemo: z.literal('pos').optional(),
   title: nonEmpty,
   context: nonEmpty,
   role: z.string(),
@@ -99,5 +138,21 @@ export const contentSchema = z.strictObject({
   certifications: z.array(certificationSchema),
 })
 
+// Data dummy untuk demo POS interaktif (bukan klaim — memang contoh).
+const demoSchema = z.strictObject({
+  currency: nonEmpty,
+  menu: z
+    .array(
+      z.strictObject({
+        id: z.string().regex(/^[a-z0-9-]+$/),
+        name: nonEmpty,
+        price: z.number().nonnegative(),
+      })
+    )
+    .min(1),
+  trend: z.array(z.number().nonnegative()).min(1),
+})
+
 // Hanya untuk pemilik situs — tidak pernah dirender di halaman publik.
 export const placeholdersSchema = z.array(nonEmpty)
+export { demoSchema }

@@ -1,0 +1,16 @@
+{
+  "currency": "IDR",
+  "menu": [
+    { "id": "siomay", "name": "Siomay Ayam (3 pcs)", "price": 18000 },
+    { "id": "udang", "name": "Dimsum Udang (4 pcs)", "price": 24000 },
+    { "id": "pangsit", "name": "Pangsit Goreng", "price": 15000 },
+    { "id": "bakpao", "name": "Bakpao Kukus", "price": 12000 },
+    { "id": "esteh", "name": "Es Teh Manis", "price": 5000 },
+    { "id": "kopi", "name": "Susu Kopi", "price": 15000 }
+  ],
+  "trend": [
+    320000, 295000, 410000, 380000, 355000, 465000, 510000, 395000, 340000, 365000, 425000,
+    450000, 480000, 530000, 470000, 405000, 385000, 440000, 495000, 540000, 565000, 505000,
+    460000, 430000, 475000, 520000, 555000, 590000, 545000, 500000
+  ]
+}

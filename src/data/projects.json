@@ -1,6 +1,7 @@
 [
   {
     "id": "pos",
+    "interactiveDemo": "pos",
     "title": "Sistem Kasir dan Analitik Keuangan (POS)",
     "context": "Sistem kasir untuk usaha kuliner yang saya kelola sendiri. Aplikasinya mencatat transaksi dan menampilkan tren penjualan.",
     "role": "Full-stack developer sekaligus pemilik usaha",

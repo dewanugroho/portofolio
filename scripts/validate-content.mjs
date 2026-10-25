@@ -5,7 +5,7 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
-import { contentSchema, placeholdersSchema } from '../src/data/schema.js'
+import { contentSchema, placeholdersSchema, demoSchema } from '../src/data/schema.js'
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)))
 const dataDir = path.join(root, 'src', 'data')
@@ -45,8 +45,9 @@ const okPlaceholders = report(
   'placeholders.json',
   placeholdersSchema.safeParse(readJson('placeholders.json'))
 )
+const okDemo = report('demo.json', demoSchema.safeParse(readJson('demo.json')))
 
-if (!okContent || !okPlaceholders) {
+if (!okContent || !okPlaceholders || !okDemo) {
   console.error('[validate] Validasi gagal — perbaiki file di src/data/ lalu jalankan ulang.')
   process.exit(1)
 }
