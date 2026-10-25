@@ -1,0 +1,66 @@
+[
+  {
+    "id": "pos",
+    "title": "Sistem Kasir dan Analitik Keuangan (POS)",
+    "context": "Sistem kasir untuk usaha kuliner yang saya kelola sendiri. Aplikasinya mencatat transaksi dan menampilkan tren penjualan.",
+    "role": "Full-stack developer sekaligus pemilik usaha",
+    "tech": [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "FastAPI",
+      "SQLAlchemy",
+      "SQLite",
+      "PyJWT",
+      "Midtrans Snap (QRIS)",
+      "Recharts"
+    ],
+    "techUnverified": [
+      { "name": "Nginx", "verified": false },
+      { "name": "Linux VPS", "verified": false }
+    ],
+    "results": [
+      "Login pakai JWT dan pembayaran QRIS lewat Midtrans Snap",
+      "Dasbor menampilkan tren penjualan 30 hari terakhir",
+      "Dipakai untuk operasional usaha kuliner Dimsum Gembul"
+    ],
+    "repo": "https://github.com/dewanugroho/dimsum-pos",
+    "demo": "",
+    "screenshot": "",
+    "screenshotAlt": "Screenshot aplikasi POS dan dasbor analitik keuangannya"
+  },
+  {
+    "id": "rasa",
+    "title": "NLP Chatbot dengan Rasa Framework",
+    "context": "Chatbot NLP untuk layanan pelanggan UMKM. Ini bagian dari tugas akhir saya.",
+    "role": "Merancang alur percakapan dan melatih model",
+    "tech": ["Python", "Rasa", "DIETClassifier", "SQLite", "NLP"],
+    "results": [
+      "Akurasi klasifikasi intent 1.00 pada 1.458 sampel uji (matriks evaluasi di repo)",
+      "21 intent berbahasa Indonesia, bisa diakses lewat REST dan Socket.IO"
+    ],
+    "repo": "https://github.com/dewanugroho/Chatbot-Rasa",
+    "demo": "",
+    "screenshot": "/projects/rasa-confusion-matrix.webp",
+    "screenshotWidth": 1110,
+    "screenshotHeight": 1200,
+    "screenshotAlt": "Confusion matrix evaluasi intent Rasa: seluruh prediksi berada diagonal sesuai label benar"
+  },
+  {
+    "id": "dialogflow",
+    "title": "Virtual Agent dengan Google Dialogflow",
+    "context": "Chatbot dari Google Dialogflow ES sebagai pembanding Rasa. Webhook-nya ditulis pakai Flask.",
+    "role": "Mengintegrasikan Dialogflow ES dengan Flask, lalu mengevaluasi hasilnya",
+    "tech": ["Python", "Dialogflow ES", "Google Cloud", "Flask", "NLP"],
+    "results": [
+      "Akurasi klasifikasi intent 0.97 pada 308 sampel uji (matriks evaluasi di repo)",
+      "Webhook Flask untuk aksi kustom, termasuk pencatatan data penjualan"
+    ],
+    "repo": "https://github.com/dewanugroho/Chatbot-Dialogflow",
+    "demo": "",
+    "screenshot": "/projects/dialogflow-confusion-matrix.webp",
+    "screenshotWidth": 1200,
+    "screenshotHeight": 1000,
+    "screenshotAlt": "Confusion matrix evaluasi intent Dialogflow ES dengan akurasi 0.97 dari 308 sampel"
+  }
+]

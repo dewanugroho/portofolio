@@ -1,0 +1,41 @@
+{
+  "skipLink": "Lewati ke konten",
+  "nav": [
+    { "label": "Proyek", "href": "#projects" },
+    { "label": "Keahlian", "href": "#skills" },
+    { "label": "Pendidikan", "href": "#education" },
+    { "label": "Pengalaman", "href": "#experience" },
+    { "label": "Sertifikasi", "href": "#certifications" },
+    { "label": "Kontak", "href": "#contact" }
+  ],
+  "hero": {
+    "primaryCta": "Email saya",
+    "cvCta": "Unduh CV",
+    "emailLink": "Email"
+  },
+  "sections": {
+    "projects": "Proyek",
+    "skills": "Keahlian",
+    "education": "Pendidikan",
+    "experience": "Pengalaman",
+    "certifications": "Sertifikasi",
+    "contact": "Kontak"
+  },
+  "projects": {
+    "code": "Kode",
+    "demo": "Demo",
+    "roleLabel": "Peran",
+    "resultsLabel": "Hasil"
+  },
+  "certifications": {
+    "view": "Lihat",
+    "modalLabel": "Pratinjau sertifikat",
+    "close": "Tutup pratinjau"
+  },
+  "contact": {
+    "lead": ""
+  },
+  "footer": {
+    "note": "Dibuat dengan React dan Tailwind CSS"
+  }
+}

@@ -11,6 +11,7 @@ npm run build      # build produksi ke dist/ (+ generate sitemap.xml & robots.tx
 npm run preview    # pratinjau hasil build
 npm run lint       # ESLint
 npm run format     # format kode dengan Prettier
+npm run validate   # validasi konten (Zod) — juga jalan otomatis sebelum build
 ```
 
 ## Struktur proyek
@@ -21,28 +22,66 @@ index.html              Meta SEO (title, description, Open Graph, JSON-LD Person
 public/                 Aset statis: foto, sertifikat (WebP), screenshot proyek,
                         _redirects (SPA fallback), favicon.
 scripts/
-  generate-seo.mjs      Meng-generate dist/sitemap.xml & robots.txt saat postbuild.
+  generate-seo.mjs          Meng-generate dist/sitemap.xml & robots.txt saat postbuild.
+  validate-content.mjs      Validasi Zod seluruh konten; jalan sebagai prebuild & di CI.
 src/
-  App.jsx               Penyusun halaman (SkipLink → Header → main → Footer).
-  components/           Header, Hero, Projects, Skills, Experience,
-                        Certifications, Contact, Footer, SkipLink, icons.
+  App.jsx                   Penyusun halaman (SkipLink → Header → main → Footer).
+  components/               Header, Hero, Projects, Skills, Education, Experience,
+                            Certifications, Contact, Footer, SkipLink, icons.
   data/
-    content.js          Titik tunggal konten + konstanta LOCALE ('id').
-    portfolio.json      Seluruh konten & string UI (lihat di bawah).
-  index.css             Design token sebagai CSS variable (mode terang/gelap).
+    content.js              Merakit seluruh entitas + konstanta LOCALE ('id').
+    schema.js               Skema Zod untuk semua file konten.
+    site.json, ui.json, projects.json, education.json, experience.json,
+    skills.json, certifications.json
+                            Satu file per entitas (lihat di bawah).
+    placeholders.json       Daftar konten yang belum terisi — TIDAK dibundel,
+                            tidak tampil di halaman publik.
+  index.css                 Design token sebagai CSS variable (mode terang/gelap).
 ```
 
 ### Konten & antarmuka
 
-Semua teks situs ada di [`src/data/portfolio.json`](src/data/portfolio.json), termasuk
-string UI (label nav, judul section, CTA). Field proyek berformat case study:
-`context`, `role`, `tech`, `results`, `repo`, `demo`, `screenshot`.
+Semua teks situs ada di `src/data/*.json`, satu file per entitas. Komponen hanya me-render
+data, tidak ada teks hardcode di dalamnya. Field proyek berformat case study: `context`,
+`role`, `tech`, `results`, `repo`, `demo`, `screenshot`.
 
-Placeholder konten yang belum terisi ditandai `[ISI: ...]` dan tampil apa adanya di
-halaman supaya mudah ditemukan.
+Klaim yang belum diverifikasi (mis. Nginx/VPS) disimpan dengan `verified: false` dan tidak
+tampil sampai kamu ubah jadi `true`. Konten yang belum terisi didaftarkan di
+[`src/data/placeholders.json`](src/data/placeholders.json) dan tidak pernah tampil di
+halaman publik.
 
-**Menambah bahasa Inggris nanti:** buat `src/data/portfolio.en.json` (salinan struktur
-`id`), lalu di [`src/data/content.js`](src/data/content.js) daftarkan dan ganti `LOCALE`.
+Setiap perubahan konten divalidasi skema Zod ([`src/data/schema.js`](src/data/schema.js))
+lewat `npm run validate` — otomatis sebelum `npm run build` dan di CI. Konten rusak
+(field hilang, typo, URL salah) memblokir build.
+
+**Menambah bahasa Inggris nanti:** buat berkas setara dengan akhiran `.en.json`
+(mis. `site.en.json`), daftarkan di objek `LOCALES` di
+[`src/data/content.js`](src/data/content.js), lalu ganti `LOCALE`.
+
+### Cara menambah konten
+
+Semua langkah di bawah cukup edit file JSON lalu jalankan `npm run validate`.
+Komponen tidak perlu diubah.
+
+**Proyek baru** — buka [`src/data/projects.json`](src/data/projects.json), tambahkan objek
+baru di array dengan field: `id` (huruf kecil, unik), `title`, `context` (masalah/konteks,
+1-2 kalimat), `role`, `tech` (array), `results` (array), `repo`, `demo` (`""` bila kosong),
+`screenshot` (path dari `public/`, `""` bila belum ada — lengkapi `screenshotWidth/Height`
+dan `screenshotAlt` bila pakai gambar).
+
+**Sertifikasi baru** — tambahkan `{ "title", "issuer", "image" }` di
+[`src/data/certifications.json`](src/data/certifications.json). Taruh file gambar di `public/`
+(rekomen WebP, kompres dulu supaya modal cepat terbuka).
+
+**Pengalaman baru** — tambahkan `{ "period", "role", "organization", "description" }` di
+[`src/data/experience.json`](src/data/experience.json).
+
+**Pendidikan baru** — tambahkan `{ "period", "degree", "institution", "detail" }` di
+[`src/data/education.json`](src/data/education.json).
+
+**Keahlian baru** — edit array `items` per grup di
+[`src/data/skills.json`](src/data/skills.json). Klaim yang belum dikonfirmasi pakai
+`itemsUnverified` dengan `verified: false`.
 
 ### Mode gelap
 
@@ -74,7 +113,7 @@ Kedua platform memberi HTTPS + domain `*.netlify.app` / `*.pages.dev` gratis.
 ## CI
 
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml) menjalankan `format:check`, `lint`,
-dan `build` pada setiap push/PR.
+`validate` (Zod), `build`, dan smoke test pada setiap push/PR.
 
 ## Teknologi
 

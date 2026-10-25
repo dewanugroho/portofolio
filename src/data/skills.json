@@ -1,0 +1,26 @@
+[
+  {
+    "group": "Frontend",
+    "items": ["React", "Tailwind CSS", "Vite"]
+  },
+  {
+    "group": "Backend & Basis Data",
+    "items": ["Python", "FastAPI", "SQLite"]
+  },
+  {
+    "group": "Integrasi",
+    "items": ["Midtrans (QRIS)"]
+  },
+  {
+    "group": "AI & NLP",
+    "items": ["Rasa", "Dialogflow"]
+  },
+  {
+    "group": "Infrastruktur & Tools",
+    "items": ["Git"],
+    "itemsUnverified": [
+      { "name": "Nginx", "verified": false },
+      { "name": "Linux VPS", "verified": false }
+    ]
+  }
+]

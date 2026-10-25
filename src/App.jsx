@@ -1,5 +1,6 @@
 import Certifications from './components/Certifications.jsx'
 import Contact from './components/Contact.jsx'
+import Education from './components/Education.jsx'
 import Experience from './components/Experience.jsx'
 import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
@@ -17,6 +18,7 @@ export default function App() {
         <Hero />
         <Projects />
         <Skills />
+        <Education />
         <Experience />
         <Certifications />
         <Contact />
