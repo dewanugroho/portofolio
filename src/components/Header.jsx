@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
 import data from '../data/content.js'
+import CommandPalette from './CommandPalette.jsx'
 
 const THEME_KEY = 'theme'
 
@@ -49,12 +50,13 @@ export default function Header() {
               ))}
             </ul>
           </nav>
+          <CommandPalette onToggleTheme={() => setTheme(isDark ? 'light' : 'dark')} />
           <button
             type="button"
             onClick={() => setTheme(isDark ? 'light' : 'dark')}
             className="shrink-0 p-2 text-muted hover:text-ink transition-colors"
-            aria-label={isDark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap'}
-            title={isDark ? 'Mode terang' : 'Mode gelap'}
+            aria-label={data.ui.palette.toggleTheme}
+            title={data.ui.palette.toggleTheme}
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>

@@ -13,8 +13,8 @@ export default function Hero() {
     ? { label: ui.hero.cvCta, href: site.cv, icon: null }
     : {
         label: ui.hero.primaryCta,
-        href: `mailto:${site.email}`,
-        icon: hasEmail ? <Mail size={16} /> : null,
+        href: '#projects',
+        icon: null,
       }
 
   return (
@@ -47,12 +47,13 @@ export default function Hero() {
                   {primaryAction.label}
                 </a>
               )}
-              {hasEmail && !hasCv && (
+              {hasEmail && (
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-sm text-muted hover:text-ink transition-colors"
+                  className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink transition-colors"
                 >
-                  {ui.hero.emailLink}
+                  <Mail size={16} />
+                  {ui.hero.secondaryCta}
                 </a>
               )}
               {hasGithub && (
