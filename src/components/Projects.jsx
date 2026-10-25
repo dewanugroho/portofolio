@@ -1,5 +1,6 @@
 import { ExternalLink } from 'lucide-react'
 import data from '../data/content.js'
+import PosDemo from './PosDemo.jsx'
 
 // Daftar tech yang sudah diverifikasi tampil; yang belum (verified:false) disembunyikan
 // sampai dikonfirmasi pemilik portofolio.
@@ -120,6 +121,7 @@ export default function Projects() {
                 </div>
 
                 <Screenshot project={project} />
+                {project.interactiveDemo === 'pos' && <PosDemo />}
               </div>
             </article>
           )
