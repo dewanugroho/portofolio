@@ -17,7 +17,7 @@ export default function Contact() {
         <h2 id="contact-heading" className="font-mono text-xs uppercase tracking-wider text-muted">
           {ui.sections.contact}
         </h2>
-        <p className="text-sm text-muted">{ui.contact.lead}</p>
+        {Boolean(ui.contact.lead) && <p className="text-sm text-muted">{ui.contact.lead}</p>}
         <div className="flex items-center gap-4">
           {hasEmail && (
             <a

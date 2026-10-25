@@ -1,19 +1,20 @@
 import { ExternalLink } from 'lucide-react'
 import data from '../data/content.js'
 
+// Daftar tech yang sudah diverifikasi tampil; yang belum (verified:false) disembunyikan
+// sampai dikonfirmasi pemilik portofolio.
+function verifiedTech(project) {
+  const pending = (project.techUnverified || []).filter((t) => t.verified).map((t) => t.name)
+  return [...(project.tech || []), ...pending]
+}
+
 function Screenshot({ project }) {
   const { screenshot, screenshotAlt, screenshotWidth, screenshotHeight, title } = project
 
   if (!screenshot) return null
 
-  // Placeholder konten yang belum diisi — ditampilkan apa adanya agar mudah ditemukan.
-  if (screenshot.startsWith('[ISI:')) {
-    return (
-      <p className="mt-4 text-sm text-muted border border-dashed border-rule rounded-token px-4 py-3">
-        {screenshot}
-      </p>
-    )
-  }
+  // Placeholder konten yang belum diisi tidak ditampilkan di halaman publik.
+  if (screenshot.startsWith('[ISI:')) return null
 
   return (
     <img
@@ -71,9 +72,12 @@ export default function Projects() {
                   </p>
                 )}
 
-                {project.tech && project.tech.length > 0 && (
-                  <p className="font-mono text-xs text-muted">{project.tech.join(' · ')}</p>
-                )}
+                {(() => {
+                  const tech = verifiedTech(project)
+                  return tech.length > 0 ? (
+                    <p className="font-mono text-xs text-muted">{tech.join(' · ')}</p>
+                  ) : null
+                })()}
 
                 {hasResults && (
                   <div className="space-y-1 pt-1">
@@ -81,14 +85,13 @@ export default function Projects() {
                       {ui.projects.resultsLabel}
                     </p>
                     <ul className="space-y-1">
-                      {project.results.map((result, i) => (
-                        <li key={i} className="text-sm text-muted flex gap-2">
-                          <span aria-hidden="true" className="text-accent">
-                            →
-                          </span>
-                          <span>{result}</span>
-                        </li>
-                      ))}
+                      {project.results
+                        .filter((result) => !result.startsWith('[ISI:'))
+                        .map((result, i) => (
+                          <li key={i} className="text-sm text-muted">
+                            {result}
+                          </li>
+                        ))}
                     </ul>
                   </div>
                 )}
