@@ -35,8 +35,8 @@ export default function Header() {
         <a href="#main-content" className="font-semibold text-lg text-ink shrink-0">
           {data.site.name}
         </a>
-        <div className="flex items-center gap-2 min-w-0">
-          <nav aria-label="Navigasi utama" className="min-w-0 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-2 min-w-0 max-w-full overflow-hidden">
+          <nav aria-label="Navigasi utama" className="flex-1 min-w-0 overflow-x-auto no-scrollbar">
             <ul className="flex items-center gap-6 whitespace-nowrap">
               {navItems.map((item) => (
                 <li key={item.href}>
