@@ -11,3 +11,15 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Security headers untuk semua route.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # CSP mulai dengan report-only dulu, aktifkan setelah diverifikasi.
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; report-uri /csp-report"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
