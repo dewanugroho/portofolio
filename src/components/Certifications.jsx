@@ -91,7 +91,9 @@ export default function Certifications() {
           <div
             ref={dialogRef}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-paper"
-            onClick={closeModal}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) closeModal()
+            }}
             role="dialog"
             aria-modal="true"
             aria-label={ui.certifications.modalLabel}
