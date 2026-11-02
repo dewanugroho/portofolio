@@ -1,0 +1,74 @@
+{
+  "skipLink": "Lewati ke konten",
+  "nav": [
+    { "label": "Proyek", "href": "#projects" },
+    { "label": "Keahlian", "href": "#skills" },
+    { "label": "Pendidikan", "href": "#education" },
+    { "label": "Pengalaman", "href": "#experience" },
+    { "label": "Sertifikasi", "href": "#certifications" },
+    { "label": "Kontak", "href": "#contact" }
+  ],
+  "hero": {
+    "primaryCta": "Lihat proyek",
+    "secondaryCta": "Email saya",
+    "cvCta": "Unduh CV",
+    "emailLink": "Email"
+  },
+  "palette": {
+    "label": "Command palette",
+    "hint": "Buka command palette",
+    "placeholder": "Cari perintah...",
+    "empty": "Tidak ada perintah yang cocok.",
+    "copyEmail": "Salin email",
+    "copied": "Email disalin",
+    "copyFailed": "Gagal menyalin",
+    "toggleTheme": "Ganti tema terang/gelap",
+    "openGithub": "Buka GitHub"
+  },
+  "posDemo": {
+    "title": "Demo POS",
+    "badge": "DEMO",
+    "note": "Data dummy. Tidak ada transaksi nyata.",
+    "menuLabel": "Menu",
+    "cartLabel": "Keranjang",
+    "empty": "Klik menu untuk menambah ke keranjang.",
+    "total": "Total",
+    "addItem": "Tambah",
+    "removeItem": "Kurangi",
+    "pay": "Bayar QRIS",
+    "payTitle": "Simulasi pembayaran QRIS",
+    "payNote": "Ini simulasi. Tidak ada uang yang berpindah.",
+    "confirmPay": "Bayar (demo)",
+    "cancel": "Batal",
+    "success": "Pembayaran berhasil (demo)",
+    "done": "Selesai",
+    "close": "Tutup simulasi",
+    "trendLabel": "Tren penjualan 30 hari",
+    "trendNote": "Grafik dummy untuk demonstrasi dasbor."
+  },
+  "sections": {
+    "projects": "Proyek",
+    "skills": "Keahlian",
+    "education": "Pendidikan",
+    "experience": "Pengalaman",
+    "certifications": "Sertifikasi",
+    "contact": "Kontak"
+  },
+  "projects": {
+    "code": "Kode",
+    "demo": "Demo",
+    "roleLabel": "Peran",
+    "resultsLabel": "Hasil"
+  },
+  "certifications": {
+    "view": "Lihat",
+    "modalLabel": "Pratinjau sertifikat",
+    "close": "Tutup pratinjau"
+  },
+  "contact": {
+    "lead": ""
+  },
+  "footer": {
+    "note": "Dibuat dengan React dan Tailwind CSS"
+  }
+}

@@ -1,10 +1,69 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portofolio</title>
+    <title>Dewa Bintang Nugroho | Fullstack Developer</title>
+    <meta
+      name="description"
+      content="Portofolio Dewa Bintang Nugroho, lulusan Informatika Universitas Sahid Surakarta. Saya membangun aplikasi web pakai React dan FastAPI, termasuk sistem kasir berbayar QRIS dan chatbot NLP. Terbuka untuk peluang kerja."
+    />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dewa Bintang Nugroho" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:title" content="Dewa Bintang Nugroho | Fullstack Developer" />
+    <meta
+      property="og:description"
+      content="Saya membangun aplikasi web pakai React dan FastAPI, termasuk sistem kasir berbayar QRIS dan chatbot NLP. Terbuka untuk peluang kerja."
+    />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/foto_formal.jpg" />
+
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Dewa Bintang Nugroho | Fullstack Developer" />
+    <meta
+      name="twitter:description"
+      content="Saya membangun aplikasi web pakai React dan FastAPI, termasuk sistem kasir berbayar QRIS dan chatbot NLP. Terbuka untuk peluang kerja."
+    />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/foto_formal.jpg" />
+
+    <!-- Structured data: Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Dewa Bintang Nugroho",
+        "jobTitle": "Fullstack Developer",
+        "url": "%VITE_SITE_URL%/",
+        "email": "mailto:dewanugroho004@gmail.com",
+        "image": "%VITE_SITE_URL%/foto_formal.jpg",
+        "sameAs": ["https://github.com/dewanugroho"],
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Universitas Sahid Surakarta"
+        }
+      }
+    </script>
+
+    <!-- Terapkan tema sebelum paint pertama agar tidak ada kilatan terang/terang. -->
+    <script>
+      ;(function () {
+        try {
+          var saved = localStorage.getItem('theme')
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark')
+          }
+        } catch (e) {
+          /* localStorage tidak tersedia — pakai preferensi sistem saja. */
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

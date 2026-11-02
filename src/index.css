@@ -1,3 +1,85 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --color-paper: #fafaf9;
+    --color-surface: #ffffff;
+    --color-ink: #1c1917;
+    --color-muted: #57534e;
+    --color-rule: #e7e5e4;
+    --color-accent: #0f766e;
+    --color-accent-strong: #115e59;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --color-paper: #1c1917;
+    --color-surface: #292524;
+    --color-ink: #fafaf9;
+    --color-muted: #a8a29e;
+    --color-rule: #44403c;
+    --color-accent: #2dd4bf;
+    --color-accent-strong: #5eead4;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent text-surface;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-accent outline-offset-2;
+    outline-style: solid;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Hormati prefers-reduced-motion: matikan semua animasi & transisi. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9994px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .skip-link:focus {
+    position: static;
+    left: auto;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    overflow: visible;
+    z-index: 1000;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
