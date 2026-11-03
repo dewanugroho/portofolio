@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "validate": "node scripts/validate-content.mjs",
-    "prebuild": "npm run validate",
+    "copy-cms": "node scripts/copy-cms.mjs",
+    "prebuild": "npm run validate && npm run copy-cms",
     "build": "vite build",
     "postbuild": "node scripts/generate-seo.mjs",
     "lint": "eslint .",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@sveltia/cms": "0.257.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.1.0",
@@ -34,6 +36,7 @@
     "prettier": "^3.9.10",
     "tailwindcss": "^3.4.19",
     "vite": "^8.2.2",
+    "wrangler": "4.157.0",
     "zod": "^4.6.7"
   }
 }

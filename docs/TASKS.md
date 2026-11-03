@@ -50,7 +50,7 @@ Pasang Sveltia CMS sebagai halaman admin dengan autentikasi GitHub PAT. Lihat `d
 
 | No | Tugas | File terkait | Estimasi | Dep. | Catatan |
 |----|------|-------------|----------|------|---------|
-| 2.1 | Buat `public/admin/index.html` yang memuat Sveltia CMS dari CDN. Tambah `meta name="robots" content="noindex"` untuk cegah indeks mesin pencari. | `public/admin/index.html` | 15-30 menit | 1.11 | Lihat ARCHITECTURE.md 8.6 |
+| 2.1 | Buat `public/admin/index.html` yang memuat Sveltia CMS dari bundle lokal `/admin/cms/sveltia-cms.js`. Tambah `meta name="robots" content="noindex"`. Bundle sudah dipasang lewat npm dan disalin otomatis saat build (lihat ARCHITECTURE.md 8.6). | `public/admin/index.html` | 15-30 menit | 1.11 | Sudah dibuat di Koreksi Tahap B |
 | 2.2 | Buat `public/admin/config.yml` dengan backend GitHub (`repo: dewanugroho/portofolio, branch: main`), media folder, dan definisi semua koleksi (Profil, Proyek, Keahlian, Pengalaman, Pendidikan, Sertifikasi). Tambah `hint` pada field image. | `public/admin/config.yml` | 2-4 jam | 2.1 | Lihat ARCHITECTURE.md 8.5 |
 | 2.3 | Buat GitHub fine-grained PAT: scope Contents (Read and write) + Metadata (Read, otomatis). Expiration 90 hari. | GitHub settings | 15-30 menit | - | Lihat ARCHITECTURE.md 12.2-12.3 |
 | 2.4 | Deploy untuk tes ke Cloudflare (atau Netlify). Buka `/admin/`, klik "Sign In with Token", tempel PAT, verifikasi koleksi muncul dengan data yang sudah ada. | - | 30-60 menit | 2.2-2.3 | Butuh Tahap E (deploy) dulu |
@@ -76,7 +76,7 @@ Perbaikan temuan Sedang dan Rendah. Lihat `docs/AUDIT.md` kategori 3, 4, 5, 6.
 | No | Tugas | File terkait | Estimasi | Dep. | Tingkat audit |
 |----|------|-------------|----------|------|---------------|
 | 3.1 | Buat ulang favicon dengan palet teal (bukan ungu). Logo inisial "DB" sederhana. | `public/favicon.svg` | 30-60 menit | - | Sedang (audit 5) |
-| 3.2 | Buat halaman 404 sederhana dengan pesan dan link ke beranda. Tambah konfigurasi di `public/_redirects`. Aktifkan CSP mode enforce di `public/_headers` (ganti `Content-Security-Policy-Report-Only` ke `Content-Security-Policy`) setelah verifikasi tidak ada resource yang terblokir. | `public/404.html`, `public/_redirects`, `public/_headers` | 1-2 jam | 0.1 | Sedang (audit 5, 7) |
+| 3.2 | Buat halaman 404 sederhana dengan pesan dan link ke beranda. Tambah konfigurasi di `public/_redirects`. | `public/404.html`, `public/_redirects` | 1-2 jam | 0.1 | Sedang (audit 5, 7). CSP enforce dikerjakan di Tahap E. |
 | 3.3 | Buat og:image 1200x630 khusus social sharing (foto + nama + peran). Tambah `og:image:width`, `og:image:height`. Ganti Twitter card ke `summary_large_image`. | `index.html`, aset baru | 1-2 jam | 0.1 | Sedang (audit 3, 4) |
 | 3.4 | Tambah `theme-color` meta di `index.html` untuk terang dan gelap (pakai media query). | `index.html` | 15-30 menit | - | Rendah (audit 4) |
 | 3.5 | Perbaiki CommandPalette: tambah `role="combobox"`, `aria-expanded`, `aria-activedescendant` pada input. Set id unik per opsi. | `src/components/CommandPalette.jsx` | 1-2 jam | - | Sedang (audit 4) |
@@ -130,6 +130,20 @@ Urutan menurun berdasarkan nilai. Dikerjakan bertahap setelah inti berfungsi.
 | 5.12 | Tambah halaman detail proyek jika konten bertambah. Pertimbangkan React Router. | struktur baru | 4-8 jam | 5.3 | Rendah |
 
 Total estimasi Fase 5: 11-22 jam (atau lebih jika semua dikerjakan).
+
+---
+
+## Tahap E: Deploy ke Hosting Gratis (Cloudflare Workers)
+
+Dikerjakan setelah Fase 1-2 selesai. Lihat `docs/DEPLOY.md` untuk panduan langkah per langkah (akan dibuat di Tahap E).
+
+| No | Tugas | File terkait | Estimasi | Dep. |
+|----|-------|-------------|----------|------|
+| E.1 | Set `VITE_SITE_URL=https://dewabintangn.my.id` di panel environment variable Cloudflare. Trigger rebuild. Verifikasi canonical, OG, sitemap pakai domain benar. | Dashboard Cloudflare | 15-30 menit | Deploy awal |
+| E.2 | Aktifkan CSP mode enforce di `public/_headers`: ganti `Content-Security-Policy-Report-Only` ke `Content-Security-Policy`. Verifikasi tidak ada resource yang terblokir sebelum menghubungkan domain kustom. | `public/_headers` | 30-60 menit | E.1 |
+| E.3 | Hubungkan domain kustom `dewabintangn.my.id` ke Worker di dashboard Cloudflare. | Dashboard Cloudflare | 15-30 menit | E.2 |
+| E.4 | Jalankan daftar pemeriksaan deploy: situs tampil, header keamanan aktif, canonical dan OG pakai domain benar, sitemap valid, login admin berhasil, edit konten dari admin memicu deploy. | - | 30-60 menit | E.3 |
+| E.5 | Set `VITE_FORMSPREE_ID` di panel environment variable Cloudflare (setelah form kontak diimplementasi di Fase 5). | Dashboard Cloudflare | 15-30 menit | 5.1 |
 
 ---
 

@@ -1,0 +1,21 @@
+// Konfigurasi Cloudflare Workers dengan Static Assets.
+// Sumber: https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/
+//
+// PENTING: Jangan isi account_id di sini.
+// Isi di dashboard Cloudflare atau gunakan `wrangler login` secara lokal.
+//
+// not_found_handling: "single-page-application"
+//   Setiap URL yang tidak cocok dengan aset statis akan disajikan index.html (HTTP 200).
+//   Ini membuat navigasi langsung ke rute seperti /projects/rasa tetap berfungsi.
+//   Referensi: https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/
+//
+// _headers dan _redirects di folder dist/ dibaca otomatis oleh Cloudflare.
+// Tidak perlu konfigurasi tambahan untuk header keamanan.
+{
+  "name": "portofolio",
+  "compatibility_date": "2026-11-03",
+  "assets": {
+    "directory": "./dist/",
+    "not_found_handling": "single-page-application"
+  }
+}

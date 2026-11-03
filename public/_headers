@@ -11,13 +11,13 @@
   Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; report-uri /csp-report
 
 # CSP ketat untuk halaman admin.
-# Catatan: sampai Sveltia CMS di-host sendiri (lihat TASKS.md tugas 2.1),
-# script-src dan connect-src sementara mengizinkan unpkg.com dan api.github.com.
-# Setelah self-hosting, ganti ke: script-src 'self'; connect-src 'self'
+# Sveltia CMS disajikan dari /admin/cms/sveltia-cms.js (bundle lokal, bukan CDN).
+# Koneksi ke api.github.com diperlukan untuk autentikasi dan commit via GitHub PAT.
+# Tidak ada CDN pihak ketiga yang diizinkan.
 /admin/*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'none'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.github.com; frame-ancestors 'none'; base-uri 'none'; form-action 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://api.github.com; frame-ancestors 'none'; base-uri 'none'; form-action 'none'

@@ -420,12 +420,28 @@ Koleksi lain (Sertifikasi, Keahlian, Pengalaman, Pendidikan, Profil) dikonfigura
     <title>Admin Portofolio</title>
   </head>
   <body>
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <!--
+      Sveltia CMS disajikan dari /admin/cms/sveltia-cms.js (bundle lokal).
+      Bundle di-generate oleh "npm run copy-cms" (bagian dari prebuild).
+      Versi dikunci di package.json (@sveltia/cms 0.257.0).
+    -->
+    <script src="/admin/cms/sveltia-cms.js"></script>
   </body>
 </html>
 ```
 
-Catatan: tidak perlu widget tambahan. Sveltia CMS menangani login GitHub PAT bawaan.
+Bundle Sveltia CMS dipasang lewat npm dengan versi dikunci, bukan dimuat dari CDN eksternal:
+
+```bash
+npm install --save-dev --save-exact @sveltia/cms@0.257.0
+```
+
+Skrip `scripts/copy-cms.mjs` menyalin bundle dari `node_modules/@sveltia/cms/dist/sveltia-cms.js` ke `public/admin/cms/sveltia-cms.js` setiap kali build berjalan. Folder `public/admin/cms/` ada di `.gitignore` karena merupakan artefak build.
+
+Untuk memperbarui versi Sveltia CMS:
+1. Ubah versi di `package.json` (devDependencies `@sveltia/cms`).
+2. Jalankan `npm install`.
+3. Build ulang (copy-cms otomatis berjalan saat `npm run build`).
 
 ## 9. Hosting
 
@@ -440,7 +456,27 @@ Keuntungan untuk proyek ini:
 - CDN edge global, latensi rendah untuk pengunjung di mana saja.
 - Tidak perlu kartu kredit untuk free tier.
 
-File konfigurasi yang diperlukan: `wrangler.toml` (dibuat di Tahap E, saat setup deploy).
+### File konfigurasi Cloudflare: wrangler.jsonc
+
+File `wrangler.jsonc` sudah dibuat di root project. Ini konfigurasi minimum untuk Workers Static Assets dengan SPA routing:
+
+```jsonc
+// wrangler.jsonc
+{
+  "name": "portofolio",
+  "compatibility_date": "2026-11-03",
+  "assets": {
+    "directory": "./dist/",
+    "not_found_handling": "single-page-application"
+  }
+}
+```
+
+`not_found_handling: "single-page-application"` menyebabkan setiap URL yang tidak cocok dengan aset statis akan dilayani oleh `index.html` dengan status HTTP 200. Ini memastikan navigasi langsung ke rute apapun (mis. `/skills`, `/projects/rasa`) tetap berfungsi.
+
+File `_headers` dan `_redirects` di `dist/` (disalin dari `public/`) dibaca otomatis oleh Cloudflare. Tidak perlu konfigurasi tambahan.
+
+`account_id` tidak disimpan di `wrangler.jsonc`. Isi lewat `wrangler login` secara lokal atau di dashboard Cloudflare saat setup deploy.
 
 ### Hosting cadangan: Netlify
 
@@ -526,13 +562,18 @@ File `netlify.toml` tetap ada untuk konfigurasi build khusus Netlify, tapi heade
 
 ### CSP saat ini: Report-Only
 
-`Content-Security-Policy-Report-Only` diaktifkan untuk situs publik. Mode ini mengirim laporan pelanggaran ke `/csp-report` tanpa memblokir konten apapun. Tujuannya: mengamati apakah CSP yang direncanakan kompatibel sebelum diaktifkan penuh.
+`Content-Security-Policy-Report-Only` diaktifkan untuk situs publik di `public/_headers`. Mode ini mengirim laporan pelanggaran ke `/csp-report` tanpa memblokir konten apapun.
 
-**Tugas sebelum publikasi (lihat TASKS.md 3.2)**: aktifkan CSP mode enforce (ganti header dari `Content-Security-Policy-Report-Only` ke `Content-Security-Policy`) setelah memverifikasi tidak ada resource yang terblokir.
+**Tugas sebelum menghubungkan domain kustom (Tahap E)**: aktifkan CSP mode enforce (ganti `Content-Security-Policy-Report-Only` ke `Content-Security-Policy`) setelah memverifikasi tidak ada resource yang terblokir. Ini harus selesai sebelum domain `dewabintangn.my.id` dihubungkan ke situs.
 
 ### CSP admin
 
-Halaman `/admin/*` mendapat CSP yang lebih ketat: hanya mengizinkan script dari `unpkg.com` (Sveltia CMS CDN) dan koneksi ke `api.github.com`. Frame-ancestors diblokir penuh. Ini melindungi token PAT dari clickjacking dan skrip berbahaya.
+Halaman `/admin/*` mendapat CSP enforce langsung (bukan Report-Only). CSP admin hanya mengizinkan:
+- Script dari domain sendiri (`'self'`) — Sveltia CMS disajikan dari `/admin/cms/sveltia-cms.js`
+- Koneksi ke `api.github.com` — untuk autentikasi PAT dan commit via GitHub API
+- Tidak ada CDN pihak ketiga
+
+Frame-ancestors diblokir penuh untuk mencegah clickjacking yang bisa mencuri token PAT.
 
 ## 12. Autentikasi Admin: GitHub PAT
 
@@ -668,21 +709,23 @@ flowchart LR
 
 ## 16. Tabel Biaya
 
-Semua komponen menggunakan tier gratis permanen. Angka batas diambil dari halaman resmi masing-masing layanan (diverifikasi Oktober-November 2026).
+Semua komponen menggunakan tier gratis permanen. Angka batas diambil langsung dari halaman resmi masing-masing layanan.
 
-| Komponen | Layanan | Biaya | Batas free tier | Sumber |
-|----------|---------|-------|-----------------|--------|
-| Hosting (utama) | Cloudflare Workers | Rp 0 | Permintaan ke aset statis: gratis dan tidak terbatas. Aset per versi: 20.000 file. Ukuran file maks: 25 MB/file. Bundle Worker: 64 MB (uncompressed). Tanpa batas bandwidth. | [workers/platform/pricing](https://developers.cloudflare.com/workers/platform/pricing) |
-| Hosting (cadangan) | Netlify | Rp 0 | 300 build credits/bulan. Setiap deploy produksi: 15 credit. Artinya ~20 deploy/bulan. Proyek paused jika credits habis sampai bulan berikutnya. | [netlify.com/pricing](https://www.netlify.com/pricing/pro-vs-free/) |
-| Source control + CI | GitHub | Rp 0 | Repo publik: Actions minutes gratis tidak terbatas. Repo privat: 2.000 menit/bulan, 500 MB storage. Repo ini publik, jadi tidak ada batasan. | [github.com/pricing](https://github.com/pricing) |
-| CMS | Sveltia CMS | Rp 0 | Open source, tidak ada server, tidak ada limit. Dimuat dari CDN unpkg.com. | [github.com/sveltia/sveltia-cms](https://github.com/sveltia/sveltia-cms) |
-| Form kontak | Formspree | Rp 0 | 50 submissions/bulan, 1 akun, riwayat 30 hari. Tidak ada kartu kredit. | [formspree.io/plans](https://formspree.io/plans) |
-| Custom domain | dewabintangn.my.id | Biaya domain | Domain dibeli terpisah, tidak terkait stack. Cloudflare mengarahkan domain ke Worker. | - |
+**Tanggal pengecekan: 3 November 2026.**
+
+| Komponen | Layanan | Biaya | Batas free tier | Sumber resmi |
+|----------|---------|-------|-----------------|--------------|
+| Hosting (utama) | Cloudflare Workers | Rp 0 | Permintaan ke aset statis: gratis dan tidak terbatas. Aset per versi: 20.000 file. Ukuran file: maks 25 MB/file. Bundle Worker: maks 64 MB (uncompressed). Bandwidth keluar: gratis, tidak ada batasan. | [workers/platform/pricing](https://developers.cloudflare.com/workers/platform/pricing) |
+| Hosting (cadangan) | Netlify | Rp 0 | 300 credits/bulan (hard limit, tidak ada auto-recharge). Setiap production deploy: 15 credits. Bandwidth: 20 credits/GB. Estimasi: ~20 deploy/bulan jika tidak ada traffic berarti. Jika credits habis, project pause sampai bulan berikutnya. | [docs.netlify.com/billing](https://docs.netlify.com/manage/accounts-and-billing/billing/billing-for-credit-based-plans/credit-based-pricing-plans/) |
+| Source control + CI | GitHub | Rp 0 | Repo publik: Actions minutes gratis tidak terbatas. Repo privat: 2.000 menit/bulan. Repo `dewanugroho/portofolio` adalah repo publik, sehingga tidak ada batasan menit. | [github.com/pricing](https://github.com/pricing) |
+| CMS | Sveltia CMS | Rp 0 | Open source (MIT/AGPL). Tidak ada server pihak ketiga, tidak ada limit dokumen. Versi dikunci di `package.json`, disajikan dari domain sendiri. | [github.com/sveltia/sveltia-cms](https://github.com/sveltia/sveltia-cms) |
+| Form kontak | Formspree | Rp 0 | 50 submissions/bulan. 2 linked emails. Riwayat 30 hari. Tidak ada kartu kredit. Pesan tetap masuk jika melebihi limit, tapi notifikasi email tidak terkirim. | [formspree.io/plans](https://formspree.io/plans) |
+| Custom domain | dewabintangn.my.id | Biaya domain | Domain .my.id dibeli terpisah dari registrar. Cloudflare mengarahkan domain ke Worker secara gratis. | - |
 | **Total bulanan** | | **Rp 0** (di luar biaya domain) | | |
 
 ### Catatan risiko biaya
 
-- **Cloudflare**: permintaan ke Worker script (bukan aset statis) dibatasi 100.000/hari di free tier. Untuk situs portofolio yang sepenuhnya static, semua request dilayani sebagai aset statis, sehingga batas ini tidak berlaku.
-- **Netlify**: model credit-based sejak September 2025 membuat batas lebih sulit diprediksi. Gunakan hanya sebagai cadangan darurat.
-- **Formspree**: 50 submissions/bulan cukup untuk portofolio. Jika melebihi, pesan tetap masuk tapi notifikasi email tidak terkirim. Upgrade ke $15/bulan untuk 200 submissions jika diperlukan.
+- **Cloudflare Workers free tier**: permintaan ke Worker script (bukan aset statis) dibatasi 100.000/hari. Untuk situs portofolio ini yang sepenuhnya static (tidak ada Worker script, hanya `not_found_handling`), semua request dilayani sebagai aset statis. Limit 100.000/hari tidak berlaku.
+- **Netlify credit model**: sejak September 2025, Netlify menggunakan sistem credit. Free plan = 300 credits/bulan (hard limit). Ini setara ~20 production deploy/bulan jika tidak ada traffic yang signifikan. Gunakan sebagai cadangan darurat saja.
+- **Formspree**: 50 submissions/bulan cukup untuk portofolio. Jika melebihi limit, pesan tersimpan di dashboard tapi email notifikasi tidak dikirim. Pemilik bisa cek dashboard Formspree secara manual.
 - Tidak ada layanan dalam stack ini yang memerlukan kartu kredit untuk tier gratis.
