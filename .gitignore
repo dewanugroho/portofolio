@@ -17,6 +17,9 @@ dist-ssr
 .env.local
 .env.*.local
 
+# Sveltia CMS bundle (di-generate dari node_modules saat build)
+public/admin/cms/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
