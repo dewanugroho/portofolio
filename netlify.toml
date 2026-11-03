@@ -1,25 +1,19 @@
-# Konfigurasi deploy Netlify.
-# Domain: set VITE_SITE_URL di Site configuration → Environment variables
-# (nilai env CI menimpa file .env).
+# Konfigurasi deploy Netlify (hosting cadangan).
+# Hosting utama: Cloudflare Workers dengan Static Assets.
+# Domain: set VITE_SITE_URL dan VITE_FORMSPREE_ID di panel environment
+# variable hosting (bukan di repo).
+#
+# Header keamanan dan redirect ada di file netral hosting:
+# - public/_headers  (didukung Cloudflare dan Netlify)
+# - public/_redirects (didukung Cloudflare dan Netlify)
+# File ini hanya menyimpan konfigurasi build khusus Netlify.
 
 [build]
   command = "npm run build"
   publish = "dist"
 
-# SPA fallback: semua path jatuh ke index.html.
+# SPA fallback (jaga sebagai backup; _redirects juga sudah ada).
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-# Security headers untuk semua route.
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    # CSP mulai dengan report-only dulu, aktifkan setelah diverifikasi.
-    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; report-uri /csp-report"
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
